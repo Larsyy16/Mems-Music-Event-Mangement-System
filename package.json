@@ -18,10 +18,13 @@
     "clsx": "^2.1.0",
     "create-next-app": "^14.0.4",
     "lucide-react": "^0.303.0",
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.0.3",
     "next": "14.0.4",
     "npx": "^10.2.2",
     "react": "^18",
     "react-dom": "^18",
+    "svix": "^1.15.0",
     "tailwind-merge": "^2.2.0",
     "tailwindcss-animate": "^1.0.7"
   },
