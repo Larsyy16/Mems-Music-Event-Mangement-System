@@ -59,7 +59,7 @@ export async function POST(req: Request) {
  
 
 if(eventType === 'user.created') {
-    const {id, email_addresses, image_url, first_name, last_name, username} = evt.data;
+    const {id, email_addresses, image_url, first_name, last_name, username, last_sign_in_at} = evt.data;
 
     const user = {
         clerkId: id,
@@ -68,6 +68,7 @@ if(eventType === 'user.created') {
         firstName: first_name,
         lastName: last_name,
         photo: image_url,
+        lastSignIn: last_sign_in_at!
     }
 
 
@@ -85,13 +86,14 @@ if(eventType === 'user.created') {
 
 }
 if (eventType === 'user.updated') {
-  const {id, image_url, first_name, last_name, username } = evt.data
+  const {id, image_url, first_name, last_name, username, last_sign_in_at } = evt.data
 
   const user = {
     firstName: first_name,
     lastName: last_name,
     username: username!,
     photo: image_url,
+    lastSignIn: last_sign_in_at!
   }
 
   const updatedUser = await updateUser(id, user)
