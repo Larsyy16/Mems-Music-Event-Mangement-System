@@ -68,7 +68,7 @@ if(eventType === 'user.created') {
         firstName: first_name,
         lastName: last_name,
         photo: image_url,
-        lastSignIn: last_sign_in_at!
+        lastSignIn: new Date(last_sign_in_at!)
     }
 
 
@@ -93,7 +93,7 @@ if (eventType === 'user.updated') {
     lastName: last_name,
     username: username!,
     photo: image_url,
-    lastSignIn: last_sign_in_at!
+    lastSignIn: new Date(last_sign_in_at!)
   }
 
   const updatedUser = await updateUser(id, user)
