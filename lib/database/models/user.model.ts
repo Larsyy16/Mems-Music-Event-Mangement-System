@@ -7,7 +7,7 @@ const UserSchema = new Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   photo: { type: String, required: true },
-  lastSignIn: { type: Date, required: true, default: Date.now }
+  lastSignIn: { type: Date, required: true, default: Date.now },
 });
 
 const User = models.User || model("User", UserSchema);
