@@ -2,6 +2,8 @@
 
 Mems is a full-stack music event management system built with [Next.js 14](https://nextjs.org/). Please note that it is a work in progress.
 
+Currently, it includes authentication and CRUD-related features for user management.
+
 ## Features
 
 - Authentication
