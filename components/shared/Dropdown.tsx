@@ -10,7 +10,7 @@ import {
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
 import { Input } from "../ui/input"
-import { useState } from "react";
+import { startTransition, useEffect, useState } from "react";
 import {
     Select,
     SelectContent,
@@ -19,30 +19,53 @@ import {
     SelectValue,
   } from "@/components/ui/select"
 import { ITag } from "@/lib/database/models/tag.model";
+import { createTag, getAllTags } from "@/lib/actions/tag.actions";
   
+type DropdownProps = {
+  eventChangeHandler?:()=>void;
+  value?:string;
+}
   
-const Dropdown = () => {
+const Dropdown = ({eventChangeHandler, value}: DropdownProps) => {
 
-    const [tag, setTag] = useState<ITag[]>([]);
+    const [tags, setTags] = useState<ITag[]>([]);
     const [newTag, setNewTag] = useState("");
 
-    // const addTag = () => {
-    //     createTailwindMerge()
-    // }
+
+    const handleAddTag = () => {
+      createTag({
+        name: newTag.trim(),
+      }).then((tag) => {
+        setTags((prevState) => [...prevState, tag])
+      })
+    }
+
+    useEffect(() => {
+
+      const getTags = async () => {
+        const tagsList = await getAllTags();
+
+        tagsList && setTags(tagsList as ITag[])
+
+        getTags();
+
+      } 
+    },[])
 
   return (
 
-    <Select>
+    <Select defaultValue={value} onValueChange={eventChangeHandler}>
   <SelectTrigger className="select-field">
     <SelectValue placeholder="Tag" />
   </SelectTrigger>
   <SelectContent>
 
-    {}
-
-    <SelectItem value="light">House</SelectItem>
-    <SelectItem value="dark">Electro</SelectItem>
-    <SelectItem value="system">Rock</SelectItem>
+  { tags.length > 0 &&
+   tags.map((tag) => (
+    <SelectItem key={tag._id} value={tag._id}>
+      {tag.name}
+      </SelectItem>
+  ))}
 
 
 <AlertDialog>
@@ -61,7 +84,10 @@ const Dropdown = () => {
     </AlertDialogHeader>
     <AlertDialogFooter>
       <AlertDialogCancel>Cancel</AlertDialogCancel>
-      <AlertDialogAction>Continue</AlertDialogAction>
+      <AlertDialogAction onClick={() => startTransition(handleAddTag)}>
+        Add
+
+      </AlertDialogAction>
     </AlertDialogFooter>
   </AlertDialogContent>
 </AlertDialog>

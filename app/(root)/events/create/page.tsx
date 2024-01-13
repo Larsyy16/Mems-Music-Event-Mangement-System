@@ -5,7 +5,7 @@ import React from "react";
 const CreateEvent = () => {
   return (
     <>
-      <section className=" w-full wrapper py-6 md:py-10 bg-eventBanner-img bg-center bg-no-repeat">
+      <section className="py-8 md:py-10 bg-eventBanner-img bg-center bg-cover bg-no-repeat">
         {/* <h3 className='wrapper text-white h3-bold text-center'> */}
 
         <EventHeader />

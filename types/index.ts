@@ -15,3 +15,8 @@ export type UpdateUserParams = {
   photo: string;
   lastSignIn: Date;
 };
+
+
+export type CreateTagParams = {
+name:string;
+};

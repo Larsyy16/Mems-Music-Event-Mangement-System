@@ -32,10 +32,10 @@ module.exports = {
         },
 
         grey: {
-          600: "#545454", // Subdued - color name in figma
-          500: "#757575",
-          400: "#AFAFAF", // Disabled - color name in figma
-          50: "#F6F6F6", // White Grey - color name in figma
+          600: "#555555",
+          500: "#767676",
+          400: "#ADADAD",
+          50: "#F7F7F7",
         },
         black: "#000000",
         white: "#FFFFFF",
@@ -69,8 +69,6 @@ module.exports = {
         mono: ["var(--font-roboto-mono)"],
       },
       backgroundImage: {
-        "banner-img": "url('/assets/images/bannerEvent.png')",
-        "hero-img": "url('/assets/images/hero.png')",
         "eventBanner-img": "url(/assets/images/eventBanner.png)"
       },
       borderRadius: {

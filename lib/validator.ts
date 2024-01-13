@@ -13,7 +13,7 @@ export const eventFormSchema = z.object({
   imageUrl: z.string(),
   startDateTime: z.date(),
   endDateTime: z.date(),
-  tags: z.array(z.string()),
+  tags: z.string(),
   price: z.string(),
   isFree: z.boolean(),
   url: z.string().url(),
