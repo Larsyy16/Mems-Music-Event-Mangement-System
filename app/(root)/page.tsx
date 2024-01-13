@@ -38,9 +38,9 @@ export default async function Home() {
           Elevating Moments: <br /> At Your Fingertips
         </h2>
         <div className="flex w-full flex-col gap-5 md:flex-row text-white">
-          search filter
+          {/* search filter */}
         </div>
-        collection
+        Events will be here {"(soon)"}
       </section>
     </>
   );

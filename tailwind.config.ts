@@ -30,6 +30,13 @@ module.exports = {
           DEFAULT: "#e2213d",
           foreground: "hsl(var(--primary-foreground))",
         },
+
+        grey: {
+          600: "#545454", // Subdued - color name in figma
+          500: "#757575",
+          400: "#AFAFAF", // Disabled - color name in figma
+          50: "#F6F6F6", // White Grey - color name in figma
+        },
         black: "#000000",
         white: "#FFFFFF",
         secondary: {
@@ -61,7 +68,11 @@ module.exports = {
         sans: ["var(--font-opensans)"],
         mono: ["var(--font-roboto-mono)"],
       },
-
+      backgroundImage: {
+        "banner-img": "url('/assets/images/bannerEvent.png')",
+        "hero-img": "url('/assets/images/hero.png')",
+        "eventBanner-img": "url(/assets/images/eventBanner.png)"
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

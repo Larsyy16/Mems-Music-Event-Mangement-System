@@ -10,14 +10,18 @@ const EventHeader = () => {
     "Build Your Event Blueprint",
     "Customize Your Celebration",
     "Event Crafting Zone",
-    "Shaping Your Spectacular Event"
+    "Shaping Your Spectacular Event",
   ];
 
   // Randomly choose a header
-  const randomHeader = headerOptions[Math.floor(Math.random() * headerOptions.length)];
+  const randomHeader =
+    headerOptions[Math.floor(Math.random() * headerOptions.length)];
 
   return (
-    <h3 className="wrapper text-white h3-bold text-center"> <i> {randomHeader} </i> </h3>
+    <h3 className=" text-white h3-bold text-center">
+      {" "}
+      <i> {randomHeader} </i>{" "}
+    </h3>
   );
 };
 
