@@ -10,6 +10,9 @@
     "format": "prettier --write \"types/**/*.ts\" \"lib/**/*.ts\" \"constants/**/*.ts\" \"components/**/*.tsx\" \"app/**/*.tsx\""
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.490.0",
+    "@aws-sdk/s3-presigned-post": "^3.490.0",
+    "@aws-sdk/signature-v4-crt": "^3.489.0",
     "@clerk/nextjs": "^4.29.1",
     "@hookform/resolvers": "^3.3.4",
     "@radix-ui/react-alert-dialog": "^1.0.5",
@@ -20,6 +23,8 @@
     "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
+    "aws-crt": "^1.20.1",
+    "aws-sdk": "^2.1537.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "create-next-app": "^14.0.4",
@@ -35,6 +40,7 @@
     "svix": "^1.15.0",
     "tailwind-merge": "^2.2.0",
     "tailwindcss-animate": "^1.0.7",
+    "uuid": "^9.0.1",
     "zod": "^3.22.4"
   },
   "devDependencies": {
@@ -42,6 +48,7 @@
     "@types/react": "^18",
     "@types/react-datepicker": "^4.19.5",
     "@types/react-dom": "^18",
+    "@types/uuid": "^9.0.7",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
