@@ -11,11 +11,11 @@ const Header = () => {
       <div className="wrapper flex items-center justify-between">
         <Link href="/" className="flex w-36">
           <Image
-            src="/assets/images/Mems6.svg"
+            src="/assets/images/logo.svg"
+            alt="logo"
             width={128}
             height={38}
-            alt="logo"
-            className=""
+            className="w-full h-auto"
           />
         </Link>
         <SignedIn>
