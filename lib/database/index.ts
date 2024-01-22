@@ -18,7 +18,7 @@ export const connectToDatabase = async () => {
 
   cached.conn = await cached.promise;
 
-  console.log("connect to mongodb");
+  console.log("connected to mongodb");
 
   return cached.conn;
 };

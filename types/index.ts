@@ -16,7 +16,36 @@ export type UpdateUserParams = {
   lastSignIn: Date;
 };
 
-
 export type CreateTagParams = {
-name:string;
+  name: string;
+};
+
+export type CreateEventParams = {
+  userId: string;
+  event: {
+    title: string;
+    description: string;
+    location: string;
+    imageUrl: string;
+    startDateTime: Date;
+    endDateTime: Date;
+    tags: string;
+    price: string;
+    isFree: boolean;
+    url: string;
+  };
+  path: string;
+};
+
+export type UpdateEventParams = {
+  title: string;
+  description: string;
+  location: string;
+  imageUrl: string;
+  startDateTime: Date;
+  endDateTime: Date;
+  tags: string;
+  price: string;
+  isFree: boolean;
+  url: string;
 };
