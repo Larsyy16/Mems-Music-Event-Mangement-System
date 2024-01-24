@@ -1,19 +1,19 @@
 import { Schema, model, models, Document } from "mongoose";
 
 export interface IEvent extends Document {
-    _id: string;
-    title: string;
-    description?: string;
-    location?: string;
-    createdAt: Date;
-    imageUrl: string;
-    startDateTime: Date;
-    endDateTime: Date;
-    price: string;
-    isFree: boolean;
-    url?: string;
-    category: { _id: string; name: string };
-    organizer: { _id: string; firstName: string; lastName: string };
+  _id: string;
+  title: string;
+  description?: string;
+  location?: string;
+  createdAt: Date;
+  imageUrl: string;
+  startDateTime: Date;
+  endDateTime: Date;
+  price: string;
+  isFree: boolean;
+  url?: string;
+  category: { _id: string; name: string };
+  organizer: { _id: string; firstName: string; lastName: string };
 }
 
 const EventSchema = new Schema({
@@ -28,7 +28,7 @@ const EventSchema = new Schema({
   price: { type: String, required: true },
   isFree: { type: Boolean, required: true },
   url: { type: String, required: true },
-  category: { type: Schema.Types.ObjectId, ref: "Category" },
+  category: { type: Schema.Types.ObjectId, ref: "Tag" },
   organizer: { type: Schema.Types.ObjectId, ref: "User" },
 });
 

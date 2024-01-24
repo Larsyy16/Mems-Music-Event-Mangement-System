@@ -2,6 +2,9 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 
+import { auth } from "@clerk/nextjs";
+import React from "react";
+
 export default async function Home() {
   return (
     <>
