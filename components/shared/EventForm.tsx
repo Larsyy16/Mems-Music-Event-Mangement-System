@@ -37,7 +37,7 @@ const EventForm = ({ userId, type }: EventformProps) => {
   const [uploading, setUploading] = useState(false);
 
   const initialValues = eventDefaultValues;
-  console.log(eventDefaultValues);
+  // console.log(eventDefaultValues);
   const router = useRouter();
 
   const form = useForm<z.infer<typeof eventFormSchema>>({
@@ -45,11 +45,15 @@ const EventForm = ({ userId, type }: EventformProps) => {
     defaultValues: initialValues,
   });
 
-  console.log(userId);
+  // console.log(userId);
+  
 
   async function onSubmit(values: z.infer<typeof eventFormSchema>) {
-    console.log(values);
-    console.log(type);
+    // console.log(values);
+    // console.log(type);
+
+    let uploadedImageUrl = '';
+
     try {
       // ... (existing code)
 
@@ -73,12 +77,15 @@ const EventForm = ({ userId, type }: EventformProps) => {
           body: JSON.stringify({ filename: file.name, contentType: file.type }),
         },
       );
+      // console.log(file.name, file.type)
       if (response.ok) {
         const { url, fields } = await response.json();
-
+        // console.log(url, fields)
         const formData = new FormData();
         Object.entries(fields).forEach(([key, value]) => {
           formData.append(key, value as string);
+          // console.log(key)
+          // console.log(value)
         });
         formData.append("file", file);
         const uploadResponse = await fetch(url, {
@@ -86,7 +93,9 @@ const EventForm = ({ userId, type }: EventformProps) => {
           body: formData,
         });
         if (uploadResponse.ok) {
-          alert("Upload successful!");
+          uploadedImageUrl = url + fields.key
+
+          
         } else {
           console.error("S3 Upload Error:", uploadResponse);
           alert("Upload failed.");
@@ -102,9 +111,8 @@ const EventForm = ({ userId, type }: EventformProps) => {
       if (type === "Create") {
         const val = { ...values };
         try {
-          console.log("yo");
           const newEvent = await createEvent({
-            event: { ...values },
+            event: { ...values, imageUrl:uploadedImageUrl },
             userId,
             path: "/profile",
           });
