@@ -49,3 +49,8 @@ export type UpdateEventParams = {
   isFree: boolean;
   url: string;
 };
+
+export type EventSearchParams = {
+  params: {id: string};
+  searchParams: {[key:string]: string | string | undefined}
+}
