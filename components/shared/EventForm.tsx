@@ -46,13 +46,12 @@ const EventForm = ({ userId, type }: EventformProps) => {
   });
 
   // console.log(userId);
-  
 
   async function onSubmit(values: z.infer<typeof eventFormSchema>) {
     // console.log(values);
     // console.log(type);
 
-    let uploadedImageUrl = '';
+    let uploadedImageUrl = "";
 
     try {
       // ... (existing code)
@@ -93,9 +92,7 @@ const EventForm = ({ userId, type }: EventformProps) => {
           body: formData,
         });
         if (uploadResponse.ok) {
-          uploadedImageUrl = url + fields.key
-
-          
+          uploadedImageUrl = url + fields.key;
         } else {
           console.error("S3 Upload Error:", uploadResponse);
           alert("Upload failed.");
@@ -112,7 +109,7 @@ const EventForm = ({ userId, type }: EventformProps) => {
         const val = { ...values };
         try {
           const newEvent = await createEvent({
-            event: { ...values, imageUrl:uploadedImageUrl },
+            event: { ...values, imageUrl: uploadedImageUrl },
             userId,
             path: "/profile",
           });
