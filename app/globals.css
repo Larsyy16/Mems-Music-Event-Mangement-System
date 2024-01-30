@@ -44,6 +44,9 @@ body {
   .flex-between {
     @apply flex justify-between items-center;
   }
+  .text-fit {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+  }
 
   /* TYPOGRAPHY */
   /* 64 */
