@@ -54,3 +54,10 @@ export type EventSearchParams = {
   params: { id: string };
   searchParams: { [key: string]: string | string | undefined };
 };
+
+export type FindAllEventsParams = {
+  
+    query: string;
+    limit:number;
+    totalPages:number;
+}

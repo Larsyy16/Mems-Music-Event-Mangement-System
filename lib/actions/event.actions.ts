@@ -5,7 +5,7 @@ import { connectToDatabase } from "@/lib/database";
 import Event from "@/lib/database/models/event.model";
 import User from "@/lib/database/models/user.model";
 import { handleError } from "@/lib/utils";
-import { CreateEventParams } from "@/types";
+import { CreateEventParams, FindAllEventsParams } from "@/types";
 import Tag from "../database/models/tag.model";
 
 export async function createEvent({ userId, event, path }: CreateEventParams) {
@@ -50,6 +50,22 @@ export async function getEventById(eventId: string) {
 
     return JSON.parse(JSON.stringify(event));
   } catch (error) {
+    handleError(error);
+  }
+}
+
+export async function getAllEvents({query, limit, totalPages}:FindAllEventsParams) {
+  try {
+    await connectToDatabase();
+    const events = await populateEvent(Event.find({}))
+    .limit(limit)
+    .sort({title:1})
+    
+
+    // console.log(events)
+      return JSON.parse(JSON.stringify(events))
+      
+  }catch (error) {
     handleError(error);
   }
 }

@@ -4,8 +4,20 @@ import Link from "next/link";
 
 import { auth } from "@clerk/nextjs";
 import React from "react";
+import CardGroup from "@/components/shared/CardGroup";
+import { getAllEvents } from "@/lib/actions/event.actions";
 
 export default async function Home() {
+
+  const findEvents = {
+    query:'',
+    limit:3,
+    totalPages:6
+  }
+
+  const events = await getAllEvents(findEvents)
+
+
   return (
     <>
       <section className="bg-primary-50 bg-contain py-5 md:py-10">
@@ -42,6 +54,9 @@ export default async function Home() {
         </h2>
         <div className="flex w-full flex-col gap-5 md:flex-row text-white">
           {/* search filter */}
+          <CardGroup data={events} emptyTitle='No events found.'
+          emptyStateSubtext="Check back soon!" collectionType='idk'
+          limit={5} page={1} totalPages={5}/>
         </div>
         Events will be here {"(soon)"}
       </section>
