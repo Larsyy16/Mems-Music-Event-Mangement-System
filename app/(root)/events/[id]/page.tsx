@@ -8,10 +8,10 @@ const EventDetails = async ({
   params: { id },
   searchParams,
 }: EventSearchParams) => {
-  console.log(id);
+  // console.log(id);
 
   const Event = await getEventById(id);
-  console.log(Event);
+  // console.log(Event);
 
   return (
     <section className="bg-gray-100">
@@ -41,7 +41,7 @@ const EventDetails = async ({
       <div className="flex items-center mb-4">
       {/* <Image src="/assets/icons/dollar.svg" width={24} height={24} alt="location" /> */}
 
-      <p className="p-bold-20 text-green-700 my-2"> {Event.isFree ? 'Free' : `$${Event.price}`}</p>
+      <p className="p-bold-20 text-green-700 my-2 bg-green-100 px-4 rounded-2xl"> {Event.isFree ? 'Free' : `$${Event.price}`}</p>
       </div>
       <div className="flex items-center mb-4">
       <Image src="/assets/icons/link.svg" width={24} height={24} alt="location" />
