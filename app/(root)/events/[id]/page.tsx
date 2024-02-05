@@ -8,10 +8,8 @@ const EventDetails = async ({
   params: { id },
   searchParams,
 }: EventSearchParams) => {
-  // console.log(id);
 
   const Event = await getEventById(id);
-  // console.log(Event);
 
   return (
     <section className="bg-gray-100">
@@ -34,12 +32,10 @@ const EventDetails = async ({
       <Image src="/assets/icons/clock.svg" width={24} height={24} alt="location" className="mr-2" />
         <div>
         <p className="text-gray-700 text-lg text-fit inline-block">Start Time: {new Date(Event.startDateTime).toLocaleString()}</p>
-        {/* <span className="text-gray-700 text-lg mx-2 text-center">-</span> */}
         <p className="text-gray-700 text-lg text-fit">End Time: {new Date(Event.endDateTime).toLocaleString()}</p>
         </div>
       </div>
       <div className="flex items-center mb-4">
-      {/* <Image src="/assets/icons/dollar.svg" width={24} height={24} alt="location" /> */}
 
       <p className="p-bold-20 text-green-700 my-2 bg-green-100 px-4 rounded-2xl"> {Event.isFree ? 'Free' : `$${Event.price}`}</p>
       </div>

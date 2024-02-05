@@ -54,7 +54,7 @@ export default async function Home() {
         </h2>
         <div className="flex w-full flex-col gap-5 md:flex-row text-white">
           {/* search filter */}
-          <CardGroup data={events} emptyTitle='No events found.'
+          <CardGroup data={events || []} emptyTitle='No events found.'
           emptyStateSubtext="Check back soon!" collectionType='idk'
           limit={5} page={1} totalPages={5}/>
         </div>
