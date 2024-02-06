@@ -61,3 +61,8 @@ export type FindAllEventsParams = {
     limit:number;
     totalPages:number;
 }
+
+export type DeleteEventParams = {
+  eventId : string;
+  path : string;
+}

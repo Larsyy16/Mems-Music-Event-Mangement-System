@@ -3,40 +3,48 @@ import React from 'react'
 import Card from './Card';
 
 type CardGroupProps = {
-    data: IEvent[];
-    emptyTitle: string;
-    emptyStateSubtext:string;
-    collectionType:string;
-    limit:number;
-    page:number;
-    totalPages:number;
+    data: IEvent[],
+    emptyTitle: 'Events_Organized' | 'My_Tickets' | 'All_Events',
+    emptyStateSubtext:string,
+    collectionType:string,
+    limit:number,
+    page:number,
+    totalPages:number,
+    urlParamName: string,
+
   };
 
-const CardGroup = ({data, emptyTitle, emptyStateSubtext, collectionType, limit, page, totalPages}:CardGroupProps) => {
+const CardGroup = ({data, emptyTitle, emptyStateSubtext, collectionType, limit, page, totalPages, urlParamName}:CardGroupProps) => {
   
   // console.log(data)
 
   // const group = data[0]
   return (
-    <div>
-      <ul>
-      {
-  data.map((event) => {
-    // console.log('yo');
-    // console.log(event);
+    <>
+      {data.length > 0 ? (
+    <div className='flex flex-col items-center gap-10'>
+      <ul className='grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:gap-10'>
+        {data.map((event) => {
+          const hasOrderLink = collectionType ===
+          'Events_Organized';
+          const hidePrice = collectionType === "My_Tickets";
 
-    return (
-      <li key={event._id} className='flex justify-center'>
-        <Card event={event}></Card>
-      </li>
-    );
-  })
-}
-
+          return (
+            <li key={event._id} className='flex justify-center'>
+              <Card event={event} hasOrderLink={hasOrderLink} hidePrice={hidePrice}/>
+            </li>
+          )
+        })}
       </ul>
-
-    </div>
-
+      </div>
+): (
+      <div>
+        <h3> {emptyTitle}</h3>
+        <p> {emptyStateSubtext}</p>
+      </div>
+    )
+}
+  </>
   )
 }
 

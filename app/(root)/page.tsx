@@ -12,6 +12,7 @@ export default async function Home() {
   const findEvents = {
     query:'',
     limit:3,
+    page:1,
     totalPages:6
   }
 
@@ -54,11 +55,11 @@ export default async function Home() {
         </h2>
         <div className="flex w-full flex-col gap-5 md:flex-row text-white">
           {/* search filter */}
-          <CardGroup data={events || []} emptyTitle='No events found.'
+          </div>
+
+          <CardGroup data={events?.data} emptyTitle='No events found.'
           emptyStateSubtext="Check back soon!" collectionType='idk'
-          limit={5} page={1} totalPages={5}/>
-        </div>
-        Events will be here {"(soon)"}
+          limit={10} page={1} totalPages={5}/>
       </section>
     </>
   );

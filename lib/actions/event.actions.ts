@@ -5,7 +5,7 @@ import { connectToDatabase } from "@/lib/database";
 import Event from "@/lib/database/models/event.model";
 import User from "@/lib/database/models/user.model";
 import { handleError } from "@/lib/utils";
-import { CreateEventParams, FindAllEventsParams } from "@/types";
+import { CreateEventParams, DeleteEventParams, FindAllEventsParams } from "@/types";
 import Tag from "../database/models/tag.model";
 
 export async function createEvent({ userId, event, path }: CreateEventParams) {
@@ -54,16 +54,21 @@ export async function getEventById(eventId: string) {
   }
 }
 
-export async function getAllEvents({query, limit, totalPages}:FindAllEventsParams) {
+export async function getAllEvents({query, limit=10, page, category}:FindAllEventsParams) {
   try {
     await connectToDatabase();
     const events = await populateEvent(Event.find({}))
     .limit(limit)
+    .skip(0)
     .sort({title:1})
     
 
+    const countEvents = await Event.countDocuments(events)
     // console.log(events)
-      return JSON.parse(JSON.stringify(events))
+      return {
+        data:JSON.parse(JSON.stringify(events)),
+        totalPages: Math.ceil(countEvents / limit)
+      }
       
   }catch (error) {
     handleError(error);
@@ -72,3 +77,15 @@ export async function getAllEvents({query, limit, totalPages}:FindAllEventsParam
 
 //i have to get imageURL
 //fix no price error
+
+export async function deleteEventById({eventId, path}: DeleteEventParams) {
+  try {
+    await connectToDatabase();
+
+    const deleteEvent = await Event.findByIdAndDelete(eventId);
+
+    if (deleteEvent) revalidatePath(path);
+  } catch (error) {
+    handleError(error);
+  }
+}
