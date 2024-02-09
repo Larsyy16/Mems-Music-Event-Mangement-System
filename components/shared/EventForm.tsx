@@ -23,21 +23,32 @@ import { Textarea } from "../ui/textarea";
 import "react-datepicker/dist/react-datepicker.css";
 import Dropdown from "./Dropdown";
 import { IEvent } from "@/lib/database/models/event.model";
-import { createEvent } from "@/lib/actions/event.actions";
+import { createEvent, updateEvent } from "@/lib/actions/event.actions";
 import { useRouter } from "next/navigation";
 
 type EventformProps = {
-  userId: string;
-  type: "Create" | "Update";
+  userId: string
+  type: "Create" | "Update"
+  event?: IEvent
+  eventId?: string
 };
 
-const EventForm = ({ userId, type }: EventformProps) => {
+const EventForm = ({ userId, type, event, eventId }: EventformProps) => {
   //File uploader
   const [file, setFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
 
-  const initialValues = eventDefaultValues;
-  // console.log(eventDefaultValues);
+  const initialValues = event && type == 'Update'
+  ? {...event,
+  startDateTime: new Date(event.startDateTime),
+  endDateTime: new Date(event.endDateTime)}
+  : eventDefaultValues;
+
+
+  // const handleImgUrl = event && type === 'Update'
+  // ? setFile(event.imageUrl) : setFile(null)
+
+  // console.log(initialValues);
   const router = useRouter();
 
   const form = useForm<z.infer<typeof eventFormSchema>>({
@@ -124,6 +135,27 @@ const EventForm = ({ userId, type }: EventformProps) => {
     } catch (onSubmitError) {
       console.error("Error in onSubmit:", onSubmitError);
     }
+
+    if (type === "Update") {
+      if (!eventId) {
+        router.back()
+        return
+      }      try {
+        const updatedEvent = await updateEvent({
+          event: { ...values, imageUrl: uploadedImageUrl, _id:
+          eventId},
+          userId,
+          path: `/events/${eventId}`,
+        });
+        if (updatedEvent) {
+          form.reset();
+          router.push(`/events/${updatedEvent._id}`);
+        }
+      } catch (createEventError) {
+        console.log("Error in createEvent:", createEventError);
+      }
+    }
+
   }
 
   return (
@@ -196,10 +228,12 @@ const EventForm = ({ userId, type }: EventformProps) => {
                     type="file"
                     onChange={(e) => {
                       const files = e.target.files;
+                      console.log(files)
                       if (files) {
                         setFile(files[0]);
                       }
                     }}
+                    // {...field}
                     accept="image/png, image/jpeg"
                     className="input-field gap-5"
                   />
@@ -390,7 +424,7 @@ const EventForm = ({ userId, type }: EventformProps) => {
             disabled={form.formState.isSubmitting}
             className="button w-1/2"
           >
-            Create Event
+          {type === 'Create' ?'Create Event' : 'Update Event'}
           </Button>
         </div>
       </form>
