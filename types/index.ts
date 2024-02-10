@@ -71,3 +71,14 @@ export type DeleteEventParams = {
   eventId : string;
   path : string;
 }
+
+export type SearchParamProps = {
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export type GetEventsByUserParams = {
+  userId: string;
+  limit?: number;
+  page: number;
+};
