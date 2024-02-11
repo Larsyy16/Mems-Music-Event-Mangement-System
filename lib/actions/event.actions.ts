@@ -5,7 +5,7 @@ import { connectToDatabase } from "@/lib/database";
 import Event from "@/lib/database/models/event.model";
 import User from "@/lib/database/models/user.model";
 import { handleError } from "@/lib/utils";
-import { CreateEventParams, DeleteEventParams, FindAllEventsParams, UpdateEventParams } from "@/types";
+import { CreateEventParams, DeleteEventParams, FindAllEventsParams, GetEventsByUserParams, UpdateEventParams } from "@/types";
 import Tag from "../database/models/tag.model";
 
 export async function createEvent({ userId, event, path }: CreateEventParams) {
@@ -102,12 +102,35 @@ export async function updateEvent({ userId, event, path }: UpdateEventParams) {
 
     const updatedEvent = await Event.findByIdAndUpdate(
       event._id,
-      { ...event, category: event.categoryId },
+      { ...event, category: event.tags },
       { new: true }
     )
     revalidatePath(path)
 
     return JSON.parse(JSON.stringify(updatedEvent))
+  } catch (error) {
+    handleError(error)
+  }
+}
+
+
+// GET EVENTS BY ORGANIZER
+export async function getEventsByUser({ userId, limit = 6, page }: GetEventsByUserParams) {
+  try {
+    await connectToDatabase()
+
+    const conditions = { organizer: userId }
+    const skipAmount = (page - 1) * limit
+
+    const eventsQuery = Event.find(conditions)
+      .sort({ createdAt: 'desc' })
+      .skip(skipAmount)
+      .limit(limit)
+
+    const events = await populateEvent(eventsQuery)
+    const eventsCount = await Event.countDocuments(conditions)
+
+    return { data: JSON.parse(JSON.stringify(events)), totalPages: Math.ceil(eventsCount / limit) }
   } catch (error) {
     handleError(error)
   }
