@@ -58,7 +58,7 @@ export default async function Home() {
           </div>
 
           <CardGroup data={events?.data} emptyTitle='No events found.'
-          emptyStateSubtext="Check back soon!" collectionType='idk'
+          emptyStateSubtext="Check back soon!" collectionType='All_Events'
           limit={10} page={1} totalPages={5}/>
       </section>
     </>
