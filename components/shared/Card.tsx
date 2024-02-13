@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import {DeleteCard} from "./DeleteCard"
+import { Separator } from '../ui/separator'
 
 type CardProps = {
     event:IEvent,
@@ -14,16 +15,13 @@ type CardProps = {
 
 const Card = ({event, hasOrderLink, hidePrice}: CardProps) => {
 
-    console.log('ay')
-    console.log(event.imageUrl)
-
     const {sessionClaims} = auth();
     const userId = sessionClaims?.userId as string;
 
     const isEventCreator = userId === event.organizer._id.toString()
 
   return (
-    <div className='group relative flex min-h-[380px] w-full max-w-[400px] h-full flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all md:min-h-[438px]  py-2'>
+    <div className='relative flex min-h-[360px] w-full max-w-[420px] h-full flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all md:min-h-[438px]  py-2'>
         <Link
             href={`/events/${event._id}`}
             style={{backgroundImage: `url(${event.imageUrl})`}}
@@ -38,14 +36,11 @@ const Card = ({event, hasOrderLink, hidePrice}: CardProps) => {
               </div>
           )}
 
-          <Link
-            href={`/events/${event._id}`}
-            style={{backgroundImage: `url(${event.imageUrl})`}}
-            className='flex min-h-[230px] flex-col gap-3 p-5 md:gap-4'
-        >    
-        
+<div
+        className="flex min-h-[230px] flex-col gap-3 p-5 md:gap-4"
+      >
 { !hidePrice &&       <div className='flex gap-2'> 
-          <span className='p-semibold-14 w-min rounded-full bg-green-100 px-4 py-1 text-green-60'>
+          <span className='p-semibold-14 w-min rounded-full bg-green-100 px-4 py-1 text-gray-600'>
             {event.isFree? 'Free' : `$${event.price}`}
           </span>
         <p className='p-semibold-14 w-min rounded-full bg-grey-500/10 px-4 py-1 text-grey-500 line-clamp-1'> {event.category.name} </p>
@@ -59,6 +54,7 @@ const Card = ({event, hasOrderLink, hidePrice}: CardProps) => {
 
           {event.title}
         </p>
+        <Separator/>
 
         <div className='flex-between w-full'>
           <p className='p-medium-14 md:p-medium-16 text-grey-600'>
@@ -67,13 +63,13 @@ const Card = ({event, hasOrderLink, hidePrice}: CardProps) => {
           </p>
           {hasOrderLink && (
             <Link href={`/orders?eventId=${event._id}`}
-            className='flex gap-2'>
-              <p className='text-primary-500'> Order Details</p>
-            <Image src="/assests/icons/arrow.svg" alt='search' width={10} height={10}/>
+            className='flex gap-2 hover:bg-green-100 rounded-2xl px-2'>
+              <p className='text-grey-600'> Order Details</p>
+            <Image src="/assets/icons/arrow.svg" alt='search' width={10} height={10}/>
             </Link>
           )}
         </div>
-        </Link>
+        </div>
         </div>
   )
 }

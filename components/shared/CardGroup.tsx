@@ -4,17 +4,24 @@ import Card from './Card';
 
 type CardGroupProps = {
     data: IEvent[],
-    emptyTitle: 'Events_Organized' | 'My_Tickets' | 'All_Events',
+    emptyTitle: string,
     emptyStateSubtext:string,
-    collectionType:string,
+    collectionType:'Events_Organized' | 'My_Tickets' | 'All_Events',
     limit:number,
     page:number,
-    totalPages:number,
-    urlParamName: string,
+    totalPages?:number,
+    urlParamName?: string,
 
   };
 
-const CardGroup = ({data, emptyTitle, emptyStateSubtext, collectionType, limit, page, totalPages, urlParamName}:CardGroupProps) => {
+const CardGroup = ({
+  data, 
+  emptyTitle, 
+  emptyStateSubtext, 
+  collectionType,  
+  page, 
+  totalPages, 
+  urlParamName}:CardGroupProps) => {
   
   // console.log(data)
 
