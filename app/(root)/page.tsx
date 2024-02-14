@@ -48,7 +48,7 @@ export default async function Home() {
 
       <section
         id="events"
-        className="wrapper my-8 flex flex-col gap-8 md:gap-12 text-white"
+        className="wrapper my-8 flex flex-col gap-8 md:gap-12"
       >
         <h2 className="h2-bold text-white">
           Elevating Moments: <br /> At Your Fingertips
