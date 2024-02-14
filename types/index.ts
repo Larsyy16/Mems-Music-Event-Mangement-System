@@ -88,3 +88,20 @@ export type GetSimilarEventsParams = {
   tagId: string;
   eventId?: string;
 }
+
+//purchases
+export type PurchaseOrderParams = {
+  eventTitle: string;
+  eventId: string;
+  price: string;
+  isFree: boolean;
+  buyerId: string;
+};
+
+export type CreatePurchaseOrderParams = {
+  stripeId: string;
+  eventId: string;
+  buyerId: string;
+  totalAmount: string;
+  createdAt: Date;
+};

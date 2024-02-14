@@ -1,4 +1,5 @@
 import CardGroup from "@/components/shared/CardGroup";
+import PurchaseButton from "@/components/shared/PurchaseButton";
 import { Separator } from "@/components/ui/separator";
 import { getEventById, getSimilarEvents } from "@/lib/actions/event.actions";
 import { EventSearchParams } from "@/types";
@@ -12,8 +13,7 @@ const EventDetails = async ({
 
   const event = await getEventById(id);
 
-  console.log(event.category._id)
-  console.log(event._id)
+
 
   const similarEvents = await getSimilarEvents ({
     
@@ -58,7 +58,7 @@ const EventDetails = async ({
       <p className="text-gray-700 text-lg text-fit mx-2"> <a href={event.url} className="text-blue-500 hover:underline">{event.url}</a></p>
       </div>
     </div>
-
+    <PurchaseButton event={event}/>
     </section>
 
     <section className="wrapper bg-grey-50">
