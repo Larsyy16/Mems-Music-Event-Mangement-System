@@ -5,7 +5,7 @@ import { connectToDatabase } from "@/lib/database";
 import Event from "@/lib/database/models/event.model";
 import User from "@/lib/database/models/user.model";
 import { handleError } from "@/lib/utils";
-import { CreateEventParams, DeleteEventParams, FindAllEventsParams, GetEventsByUserParams, UpdateEventParams } from "@/types";
+import { CreateEventParams, DeleteEventParams, FindAllEventsParams, GetEventsByUserParams, GetSimilarEventsParams, UpdateEventParams } from "@/types";
 import Tag from "../database/models/tag.model";
 
 export async function createEvent({ userId, event, path }: CreateEventParams) {
@@ -54,7 +54,7 @@ export async function getEventById(eventId: string) {
   }
 }
 
-export async function getAllEvents({query, limit=10, page, category}:FindAllEventsParams) {
+export async function getAllEvents({query, limit=10}:FindAllEventsParams) {
   try {
     await connectToDatabase();
     const events = await populateEvent(Event.find({}))
@@ -135,3 +135,46 @@ export async function getEventsByUser({ userId, limit = 6, page }: GetEventsByUs
     handleError(error)
   }
 }
+
+
+export async function getSimilarEvents({tagId, eventId}: GetSimilarEventsParams){
+  try {
+    await connectToDatabase()
+
+
+    const conditions = { $and: [{ category: tagId }, { _id: { $ne: eventId } }] }
+
+
+    const eventsQuery = Event.find(conditions)
+
+
+    const events = await populateEvent(eventsQuery)
+    // const eventsCount = await Event.countDocuments(conditions)
+
+    return { data: JSON.parse(JSON.stringify(events)) }
+  } catch (error) {
+    handleError(error)
+  }
+}
+  
+
+// export async function getAllEvents({query, limit=10, page, category}:FindAllEventsParams) {
+//   try {
+//     await connectToDatabase();
+//     const events = await populateEvent(Event.find({}))
+//     .limit(limit)
+//     .skip(0)
+//     .sort({title:1})
+    
+
+//     const countEvents = await Event.countDocuments(events)
+//     // console.log(events)
+//       return {
+//         data:JSON.parse(JSON.stringify(events)),
+//         totalPages: Math.ceil(countEvents / limit)
+//       }
+      
+//   }catch (error) {
+//     handleError(error);
+//   }
+// }

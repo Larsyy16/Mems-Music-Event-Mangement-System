@@ -82,3 +82,9 @@ export type GetEventsByUserParams = {
   limit?: number;
   page: number;
 };
+
+
+export type GetSimilarEventsParams = {
+  tagId: string;
+  eventId?: string;
+}
