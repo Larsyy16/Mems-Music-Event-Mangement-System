@@ -1,8 +1,8 @@
 import CardGroup from '@/components/shared/CardGroup'
 import { Button } from '@/components/ui/button'
 import { getEventsByUser } from '@/lib/actions/event.actions'
-// import { getOrdersByUser } from '@/lib/actions/order.actions'
-// import { IOrder } from '@/lib/database/models/order.model'
+import { getPurchasesByUser } from '@/lib/actions/purchase.actions'
+import { IPurchase } from '@/lib/database/models/purchase.model'
 import { SearchParamProps } from '@/types'
 import { auth } from '@clerk/nextjs'
 import Link from 'next/link'
@@ -12,12 +12,15 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
 
-  const ordersPage = Number(searchParams?.ordersPage) || 1;
+  const purchases = await getPurchasesByUser({ userId, page: 1})
+
+  const orderedPurchases = purchases?.data.map((purchase: IPurchase) => purchase.event) || [];
+
+
+  const purchasesPage = Number(searchParams?.ordersPage) || 1;
   const eventsPage = Number(searchParams?.eventsPage) || 1;
 
-//   const orders = await getOrdersByUser({ userId, page: ordersPage})
 
-//   const orderedEvents = orders?.data.map((order: IOrder) => order.event) || [];
   const organizedEvents = await getEventsByUser({ userId, page: eventsPage })
 
   return (
@@ -35,16 +38,16 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
       </section>
 
       <section className="wrapper my-8">
-        {/* <CardGroup 
-          data={orderedEvents}
+        <CardGroup 
+          data={orderedPurchases}
           emptyTitle="No event tickets purchased yet"
           emptyStateSubtext="No worries - plenty of exciting events to explore!"
           collectionType="My_Tickets"
           limit={3}
-          page={ordersPage}
-          urlParamName="ordersPage"
-          totalPages={orders?.totalPages}
-        /> */}
+          page={1}
+          urlParamName="purchasesPage"
+          totalPages={2}
+        />
       </section>
 
       {/* Events Organized */}
@@ -68,7 +71,7 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
           limit={3}
           page={eventsPage}
           urlParamName="eventsPage"
-          totalPages={organizedEvents?.totalPages}
+          totalPages={purchases?.totalPages}
         />
       </section>
     </>

@@ -105,3 +105,14 @@ export type CreatePurchaseOrderParams = {
   totalAmount: string;
   createdAt: Date;
 };
+
+export type GetPurchaseOrdersByUserParams = {
+  userId: string | null;
+  limit?: number;
+  page: string | number | null;
+};
+
+export type GetPurchaseOrdersByEventParams = {
+  eventId: string;
+  searchString: string;
+};
