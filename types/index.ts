@@ -116,3 +116,14 @@ export type GetPurchaseOrdersByEventParams = {
   eventId: string;
   searchString: string;
 };
+
+
+export type IPurchaseItem = {
+  _id: string;
+  totalAmount: string;
+  createdAt: Date;
+  eventTitle: string;
+  eventId: string;
+  buyer: string;
+};
+

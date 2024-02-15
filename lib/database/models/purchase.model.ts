@@ -47,6 +47,6 @@ const PurchaseSchema = new Schema({
   },
 });
 
-const Purchase = models.Order || model("Order", PurchaseSchema);
+const Purchase = models.Purchase || model("Purchase", PurchaseSchema);
 
 export default Purchase;
