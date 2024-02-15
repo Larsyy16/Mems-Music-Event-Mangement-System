@@ -5,7 +5,14 @@ import { connectToDatabase } from "@/lib/database";
 import Event from "@/lib/database/models/event.model";
 import User from "@/lib/database/models/user.model";
 import { handleError } from "@/lib/utils";
-import { CreateEventParams, DeleteEventParams, FindAllEventsParams, GetEventsByUserParams, GetSimilarEventsParams, UpdateEventParams } from "@/types";
+import {
+  CreateEventParams,
+  DeleteEventParams,
+  FindAllEventsParams,
+  GetEventsByUserParams,
+  GetSimilarEventsParams,
+  UpdateEventParams,
+} from "@/types";
 import Tag from "../database/models/tag.model";
 
 export async function createEvent({ userId, event, path }: CreateEventParams) {
@@ -54,23 +61,21 @@ export async function getEventById(eventId: string) {
   }
 }
 
-export async function getAllEvents({query, limit=10}:FindAllEventsParams) {
+export async function getAllEvents({ query, limit = 10 }: FindAllEventsParams) {
   try {
     await connectToDatabase();
     const events = await populateEvent(Event.find({}))
-    .limit(limit)
-    .skip(0)
-    .sort({title:1})
-    
+      .limit(limit)
+      .skip(0)
+      .sort({ title: 1 });
 
-    const countEvents = await Event.countDocuments(events)
+    const countEvents = await Event.countDocuments(events);
     // console.log(events)
-      return {
-        data:JSON.parse(JSON.stringify(events)),
-        totalPages: Math.ceil(countEvents / limit)
-      }
-      
-  }catch (error) {
+    return {
+      data: JSON.parse(JSON.stringify(events)),
+      totalPages: Math.ceil(countEvents / limit),
+    };
+  } catch (error) {
     handleError(error);
   }
 }
@@ -78,7 +83,7 @@ export async function getAllEvents({query, limit=10}:FindAllEventsParams) {
 //i have to get imageURL
 //fix no price error
 
-export async function deleteEventById({eventId, path}: DeleteEventParams) {
+export async function deleteEventById({ eventId, path }: DeleteEventParams) {
   try {
     await connectToDatabase();
 
@@ -93,70 +98,76 @@ export async function deleteEventById({eventId, path}: DeleteEventParams) {
 // GET ONE EVENT BY ID
 export async function updateEvent({ userId, event, path }: UpdateEventParams) {
   try {
-    await connectToDatabase()
+    await connectToDatabase();
 
-    const eventToUpdate = await Event.findById(event._id)
+    const eventToUpdate = await Event.findById(event._id);
     if (!eventToUpdate || eventToUpdate.organizer.toHexString() !== userId) {
-      throw new Error('Unauthorized or event not found')
+      throw new Error("Unauthorized or event not found");
     }
 
     const updatedEvent = await Event.findByIdAndUpdate(
       event._id,
       { ...event, category: event.tags },
-      { new: true }
-    )
-    revalidatePath(path)
+      { new: true },
+    );
+    revalidatePath(path);
 
-    return JSON.parse(JSON.stringify(updatedEvent))
+    return JSON.parse(JSON.stringify(updatedEvent));
   } catch (error) {
-    handleError(error)
+    handleError(error);
   }
 }
-
 
 // GET EVENTS BY ORGANIZER
-export async function getEventsByUser({ userId, limit = 6, page }: GetEventsByUserParams) {
+export async function getEventsByUser({
+  userId,
+  limit = 6,
+  page,
+}: GetEventsByUserParams) {
   try {
-    await connectToDatabase()
+    await connectToDatabase();
 
-    const conditions = { organizer: userId }
-    const skipAmount = (page - 1) * limit
+    const conditions = { organizer: userId };
+    const skipAmount = (page - 1) * limit;
 
     const eventsQuery = Event.find(conditions)
-      .sort({ createdAt: 'desc' })
+      .sort({ createdAt: "desc" })
       .skip(skipAmount)
-      .limit(limit)
+      .limit(limit);
 
-    const events = await populateEvent(eventsQuery)
-    const eventsCount = await Event.countDocuments(conditions)
+    const events = await populateEvent(eventsQuery);
+    const eventsCount = await Event.countDocuments(conditions);
 
-    return { data: JSON.parse(JSON.stringify(events)), totalPages: Math.ceil(eventsCount / limit) }
+    return {
+      data: JSON.parse(JSON.stringify(events)),
+      totalPages: Math.ceil(eventsCount / limit),
+    };
   } catch (error) {
-    handleError(error)
+    handleError(error);
   }
 }
 
-
-export async function getSimilarEvents({tagId, eventId}: GetSimilarEventsParams){
+export async function getSimilarEvents({
+  tagId,
+  eventId,
+}: GetSimilarEventsParams) {
   try {
-    await connectToDatabase()
+    await connectToDatabase();
 
+    const conditions = {
+      $and: [{ category: tagId }, { _id: { $ne: eventId } }],
+    };
 
-    const conditions = { $and: [{ category: tagId }, { _id: { $ne: eventId } }] }
+    const eventsQuery = Event.find(conditions);
 
-
-    const eventsQuery = Event.find(conditions)
-
-
-    const events = await populateEvent(eventsQuery)
+    const events = await populateEvent(eventsQuery);
     // const eventsCount = await Event.countDocuments(conditions)
 
-    return { data: JSON.parse(JSON.stringify(events)) }
+    return { data: JSON.parse(JSON.stringify(events)) };
   } catch (error) {
-    handleError(error)
+    handleError(error);
   }
 }
-  
 
 // export async function getAllEvents({query, limit=10, page, category}:FindAllEventsParams) {
 //   try {
@@ -165,7 +176,6 @@ export async function getSimilarEvents({tagId, eventId}: GetSimilarEventsParams)
 //     .limit(limit)
 //     .skip(0)
 //     .sort({title:1})
-    
 
 //     const countEvents = await Event.countDocuments(events)
 //     // console.log(events)
@@ -173,7 +183,7 @@ export async function getSimilarEvents({tagId, eventId}: GetSimilarEventsParams)
 //         data:JSON.parse(JSON.stringify(events)),
 //         totalPages: Math.ceil(countEvents / limit)
 //       }
-      
+
 //   }catch (error) {
 //     handleError(error);
 //   }

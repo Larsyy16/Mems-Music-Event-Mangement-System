@@ -32,7 +32,7 @@ export async function POST(request: Request) {
     }
 
     const newPurchaseOrder = await createPurchaseOrder(purchase)
-    return NextResponse.json({ message: 'OK', order: newPurchaseOrder })
+    return NextResponse.json({ message: 'OK', purchase: newPurchaseOrder })
   }
 
   return new Response('', { status: 200 })

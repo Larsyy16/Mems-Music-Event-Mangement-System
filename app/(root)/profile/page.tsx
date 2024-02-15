@@ -1,44 +1,43 @@
-import CardGroup from '@/components/shared/CardGroup'
-import { Button } from '@/components/ui/button'
-import { getEventsByUser } from '@/lib/actions/event.actions'
-import { getPurchasesByUser } from '@/lib/actions/purchase.actions'
-import { IPurchase } from '@/lib/database/models/purchase.model'
-import { SearchParamProps } from '@/types'
-import { auth } from '@clerk/nextjs'
-import Link from 'next/link'
-import React from 'react'
+import CardGroup from "@/components/shared/CardGroup";
+import { Button } from "@/components/ui/button";
+import { getEventsByUser } from "@/lib/actions/event.actions";
+import { getPurchasesByUser } from "@/lib/actions/purchase.actions";
+import { IPurchase } from "@/lib/database/models/purchase.model";
+import { SearchParamProps } from "@/types";
+import { auth } from "@clerk/nextjs";
+import Link from "next/link";
+import React from "react";
 
 const ProfilePage = async ({ searchParams }: SearchParamProps) => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
 
-  const purchases = await getPurchasesByUser({ userId, page: 1})
+  const purchases = await getPurchasesByUser({ userId, page: 1 });
 
-  const orderedPurchases = purchases?.data.map((purchase: IPurchase) => purchase.event) || [];
-
+  const orderedPurchases =
+    purchases?.data.map((purchase: IPurchase) => purchase.event) || [];
 
   const purchasesPage = Number(searchParams?.ordersPage) || 1;
   const eventsPage = Number(searchParams?.eventsPage) || 1;
 
-
-  const organizedEvents = await getEventsByUser({ userId, page: eventsPage })
+  const organizedEvents = await getEventsByUser({ userId, page: eventsPage });
 
   return (
     <>
       {/* My Tickets */}
       <section className="bg-primary-50 bg-dotted-pattern bg-cover bg-center py-5 md:py-10">
         <div className="wrapper flex items-center justify-center sm:justify-between">
-          <h3 className='h3-bold text-center sm:text-left text-white'>My Tickets</h3>
+          <h3 className="h3-bold text-center sm:text-left text-white">
+            My Tickets
+          </h3>
           <Button asChild size="lg" className="button hidden sm:flex">
-            <Link href="/#events">
-              Explore More Events
-            </Link>
+            <Link href="/#events">Explore More Events</Link>
           </Button>
         </div>
       </section>
 
       <section className="wrapper my-8">
-        <CardGroup 
+        <CardGroup
           data={orderedPurchases}
           emptyTitle="No event tickets purchased yet"
           emptyStateSubtext="No worries - plenty of exciting events to explore!"
@@ -53,17 +52,17 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
       {/* Events Organized */}
       <section className="bg-primary-50 bg-dotted-pattern bg-cover bg-center py-5 md:py-10">
         <div className="wrapper flex items-center justify-center sm:justify-between">
-          <h3 className='h3-bold text-center sm:text-left text-white'>Your Events</h3>
+          <h3 className="h3-bold text-center sm:text-left text-white">
+            Your Events
+          </h3>
           <Button asChild size="lg" className="button hidden sm:flex">
-            <Link href="/events/create">
-              Create New Event
-            </Link>
+            <Link href="/events/create">Create New Event</Link>
           </Button>
         </div>
       </section>
 
       <section className="wrapper my-8">
-        <CardGroup 
+        <CardGroup
           data={organizedEvents?.data}
           emptyTitle="No events have been created yet"
           emptyStateSubtext="Go create some now"
@@ -75,7 +74,7 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
         />
       </section>
     </>
-  )
-}
+  );
+};
 
-export default ProfilePage
+export default ProfilePage;

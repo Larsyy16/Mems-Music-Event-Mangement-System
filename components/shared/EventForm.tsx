@@ -27,10 +27,10 @@ import { createEvent, updateEvent } from "@/lib/actions/event.actions";
 import { useRouter } from "next/navigation";
 
 type EventformProps = {
-  userId: string
-  type: "Create" | "Update"
-  event?: IEvent
-  eventId?: string
+  userId: string;
+  type: "Create" | "Update";
+  event?: IEvent;
+  eventId?: string;
 };
 
 const EventForm = ({ userId, type, event, eventId }: EventformProps) => {
@@ -38,12 +38,14 @@ const EventForm = ({ userId, type, event, eventId }: EventformProps) => {
   const [file, setFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
 
-  const initialValues = event && type == 'Update'
-  ? {...event,
-  startDateTime: new Date(event.startDateTime),
-  endDateTime: new Date(event.endDateTime)}
-  : eventDefaultValues;
-
+  const initialValues =
+    event && type == "Update"
+      ? {
+          ...event,
+          startDateTime: new Date(event.startDateTime),
+          endDateTime: new Date(event.endDateTime),
+        }
+      : eventDefaultValues;
 
   // const handleImgUrl = event && type === 'Update'
   // ? setFile(event.imageUrl) : setFile(null)
@@ -138,12 +140,12 @@ const EventForm = ({ userId, type, event, eventId }: EventformProps) => {
 
     if (type === "Update") {
       if (!eventId) {
-        router.back()
-        return
-      }      try {
+        router.back();
+        return;
+      }
+      try {
         const updatedEvent = await updateEvent({
-          event: { ...values, imageUrl: uploadedImageUrl, _id:
-          eventId},
+          event: { ...values, imageUrl: uploadedImageUrl, _id: eventId },
           userId,
           path: `/events/${eventId}`,
         });
@@ -155,7 +157,6 @@ const EventForm = ({ userId, type, event, eventId }: EventformProps) => {
         console.log("Error in createEvent:", createEventError);
       }
     }
-
   }
 
   return (
@@ -228,7 +229,7 @@ const EventForm = ({ userId, type, event, eventId }: EventformProps) => {
                     type="file"
                     onChange={(e) => {
                       const files = e.target.files;
-                      console.log(files)
+                      console.log(files);
                       if (files) {
                         setFile(files[0]);
                       }
@@ -424,7 +425,7 @@ const EventForm = ({ userId, type, event, eventId }: EventformProps) => {
             disabled={form.formState.isSubmitting}
             className="button w-1/2"
           >
-          {type === 'Create' ?'Create Event' : 'Update Event'}
+            {type === "Create" ? "Create Event" : "Update Event"}
           </Button>
         </div>
       </form>

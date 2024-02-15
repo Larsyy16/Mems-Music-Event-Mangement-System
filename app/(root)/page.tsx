@@ -8,16 +8,14 @@ import CardGroup from "@/components/shared/CardGroup";
 import { getAllEvents } from "@/lib/actions/event.actions";
 
 export default async function Home() {
-
   const findEvents = {
-    query:'',
-    limit:3,
-    page:1,
-    totalPages:6
-  }
+    query: "",
+    limit: 3,
+    page: 1,
+    totalPages: 6,
+  };
 
-  const events = await getAllEvents(findEvents)
-
+  const events = await getAllEvents(findEvents);
 
   return (
     <>
@@ -55,11 +53,17 @@ export default async function Home() {
         </h2>
         <div className="flex w-full flex-col gap-5 md:flex-row text-white">
           {/* search filter */}
-          </div>
+        </div>
 
-          <CardGroup data={events?.data} emptyTitle='No events found.'
-          emptyStateSubtext="Check back soon!" collectionType='All_Events'
-          limit={10} page={1} totalPages={5}/>
+        <CardGroup
+          data={events?.data}
+          emptyTitle="No events found."
+          emptyStateSubtext="Check back soon!"
+          collectionType="All_Events"
+          limit={10}
+          page={1}
+          totalPages={5}
+        />
       </section>
     </>
   );

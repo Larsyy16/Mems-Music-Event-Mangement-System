@@ -61,16 +61,15 @@ export type EventSearchParams = {
 };
 
 export type FindAllEventsParams = {
-  
-    query: string;
-    limit:number;
-    totalPages:number;
-}
+  query: string;
+  limit: number;
+  totalPages: number;
+};
 
 export type DeleteEventParams = {
-  eventId : string;
-  path : string;
-}
+  eventId: string;
+  path: string;
+};
 
 export type SearchParamProps = {
   params: { id: string };
@@ -83,11 +82,10 @@ export type GetEventsByUserParams = {
   page: number;
 };
 
-
 export type GetSimilarEventsParams = {
   tagId: string;
   eventId?: string;
-}
+};
 
 //purchases
 export type PurchaseOrderParams = {
@@ -117,7 +115,6 @@ export type GetPurchaseOrdersByEventParams = {
   searchString: string;
 };
 
-
 export type IPurchaseItem = {
   _id: string;
   totalAmount: string;
@@ -126,4 +123,3 @@ export type IPurchaseItem = {
   eventId: string;
   buyer: string;
 };
-
