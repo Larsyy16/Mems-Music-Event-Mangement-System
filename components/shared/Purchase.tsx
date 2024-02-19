@@ -33,7 +33,7 @@ const Purchase = ({ event, userId }: { event: IEvent; userId: string }) => {
   };
 
   return (
-    <form action={onPurchase}>
+    <form action={onPurchase} method="post">
       <Button type="submit" role="link" className="rounded-2xl button">
         {event.isFree ? "Get Ticket" : "Purchase Ticket"}
       </Button>
