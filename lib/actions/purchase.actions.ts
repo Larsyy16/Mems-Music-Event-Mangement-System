@@ -59,6 +59,7 @@ export const createPurchaseOrder = async (
       event: purchase.eventId,
       buyer: purchase.buyerId,
     });
+    console.log(newOrder)
 
     return JSON.parse(JSON.stringify(newOrder));
   } catch (error) {

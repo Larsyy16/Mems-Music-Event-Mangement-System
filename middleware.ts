@@ -9,10 +9,13 @@ export default authMiddleware({
         "/",
         "/events/:id",
         "/api/webhook/clerk",
+        "/api/webhook/stripe"
+
       ],
       //accessible to signed in users and signed-out
       ignoredRoutes: [
         "/api/webhook/clerk",
+        "/api/webhook/stripe"
       ],
 });
  
