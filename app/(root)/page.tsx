@@ -6,13 +6,20 @@ import { auth } from "@clerk/nextjs";
 import React from "react";
 import CardGroup from "@/components/shared/CardGroup";
 import { getAllEvents } from "@/lib/actions/event.actions";
+import { SearchParamProps } from "@/types";
+import SearchBar from "@/components/shared/SearchBar";
 
-export default async function Home() {
+export default async function Home({ searchParams}: SearchParamProps) {
+
+
+  const page = Number(searchParams?.page) || 1;
+  const searchText = (searchParams?.query as string) || '';
+  const category = (searchParams?.category as string) || '';
   const findEvents = {
-    query: "",
-    limit: 3,
-    page: 1,
-    totalPages: 6,
+    query: searchText,
+    category,
+    page,
+    limit: 10,
   };
 
   const events = await getAllEvents(findEvents);
@@ -52,7 +59,8 @@ export default async function Home() {
           Elevating Moments: <br /> At Your Fingertips
         </h2>
         <div className="flex w-full flex-col gap-5 md:flex-row text-white">
-          {/* search filter */}
+<SearchBar/>
+
         </div>
 
         <CardGroup

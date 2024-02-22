@@ -3,6 +3,7 @@ import { getPurchaseOrdersByEvent } from "@/lib/actions/purchase.actions";
 import { formatDateTime, formatPrice } from "@/lib/utils";
 import { SearchParamProps } from "@/types";
 import { IPurchaseItem } from "@/lib/database/models/purchase.model";
+import SearchBar from "@/components/shared/SearchBar";
 
 const Purchases = async ({ searchParams }: SearchParamProps) => {
   const eventId = (searchParams?.eventId as string) || "";
@@ -20,8 +21,8 @@ const Purchases = async ({ searchParams }: SearchParamProps) => {
       </section>
 
       <section className="wrapper mt-8">
-        {/* <Search placeholder="Search buyer name..." /> */}
-      </section>
+        
+<SearchBar/>      </section>
 
       <section className="wrapper overflow-x-auto">
         <table className="w-full border-collapse border-t">

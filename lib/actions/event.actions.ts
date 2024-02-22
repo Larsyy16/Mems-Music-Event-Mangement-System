@@ -61,7 +61,7 @@ export async function getEventById(eventId: string) {
   }
 }
 
-export async function getAllEvents({ query, limit = 10 }: FindAllEventsParams) {
+export async function getAllEvents({ query, page, category, limit = 10 }: FindAllEventsParams) {
   try {
     await connectToDatabase();
     const events = await populateEvent(Event.find({}))
