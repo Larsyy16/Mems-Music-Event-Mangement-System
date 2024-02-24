@@ -64,7 +64,7 @@ export type FindAllEventsParams = {
   query: string;
   category: string;
   limit: number;
-  page:number;
+  page: number;
 };
 
 export type DeleteEventParams = {
@@ -125,7 +125,6 @@ export type IPurchaseItem = {
   buyer: string;
 };
 
-
 // QUERY PARAMS
 export type UrlQueryParams = {
   params: string;
@@ -137,4 +136,3 @@ export type RemoveUrlQueryParams = {
   params: string;
   keysToRemove: string[];
 };
-

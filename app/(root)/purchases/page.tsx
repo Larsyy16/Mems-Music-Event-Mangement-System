@@ -21,8 +21,8 @@ const Purchases = async ({ searchParams }: SearchParamProps) => {
       </section>
 
       <section className="wrapper mt-8">
-        
-<SearchBar/>      </section>
+        <SearchBar />{" "}
+      </section>
 
       <section className="wrapper overflow-x-auto">
         <table className="w-full border-collapse border-t">

@@ -8,15 +8,14 @@ import CardGroup from "@/components/shared/CardGroup";
 import { getAllEvents } from "@/lib/actions/event.actions";
 import { SearchParamProps } from "@/types";
 import SearchBar from "@/components/shared/SearchBar";
+import FilterCategory from "@/components/shared/FilterCategory";
 
-export default async function Home({ searchParams}: SearchParamProps) {
-
-
+export default async function Home({ searchParams }: SearchParamProps) {
   const page = Number(searchParams?.page) || 1;
-  const searchText = (searchParams?.query as string) || '';
-  const category = (searchParams?.category as string) || '';
+  const searchText = (searchParams?.query as string) || "";
+  const category = (searchParams?.category as string) || "";
   const findEvents = {
-    query: searchText,
+    query: "",
     category,
     page,
     limit: 10,
@@ -59,8 +58,8 @@ export default async function Home({ searchParams}: SearchParamProps) {
           Elevating Moments: <br /> At Your Fingertips
         </h2>
         <div className="flex w-full flex-col gap-5 md:flex-row text-white">
-<SearchBar/>
-
+          <SearchBar />
+          <FilterCategory />
         </div>
 
         <CardGroup
