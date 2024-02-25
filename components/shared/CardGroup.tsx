@@ -47,9 +47,9 @@ const CardGroup = ({
           </ul>
         </div>
       ) : (
-        <div>
-          <h3> {emptyTitle}</h3>
-          <p> {emptyStateSubtext}</p>
+        <div className="flex-center gap-2 bg-grey-5 text-center flex-col mb-3">
+          <h3 className="p-bold-20"> {emptyTitle}</h3>
+          <p className="p-bold-16"> {emptyStateSubtext}</p>
         </div>
       )}
     </>
