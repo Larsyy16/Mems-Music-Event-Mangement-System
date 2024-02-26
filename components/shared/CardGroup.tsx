@@ -1,6 +1,7 @@
 import { IEvent } from "@/lib/database/models/event.model";
 import React from "react";
 import Card from "./Card";
+import Pagination from "./Pagination";
 
 type CardGroupProps = {
   data: IEvent[];
@@ -8,7 +9,7 @@ type CardGroupProps = {
   emptyStateSubtext: string;
   collectionType: "Events_Organized" | "My_Tickets" | "All_Events";
   limit: number;
-  page: number;
+  page: number | string;
   totalPages?: number;
   urlParamName?: string;
 };
@@ -19,7 +20,7 @@ const CardGroup = ({
   emptyStateSubtext,
   collectionType,
   page,
-  totalPages,
+  totalPages =0,
   urlParamName,
 }: CardGroupProps) => {
   // console.log(data)
@@ -45,6 +46,10 @@ const CardGroup = ({
               );
             })}
           </ul>
+
+          {totalPages >1 && (
+            <Pagination urlParamName={urlParamName} page={page} totalPages={totalPages}/>
+          )}
         </div>
       ) : (
         <div className="flex-center gap-2 bg-grey-5 text-center flex-col mb-3">

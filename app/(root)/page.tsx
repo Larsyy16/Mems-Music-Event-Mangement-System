@@ -57,7 +57,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
         <h2 className="h2-bold text-white">
           Elevating Moments: <br /> At Your Fingertips
         </h2>
-        <div className="flex w-full flex-col gap-5 md:flex-row text-white">
+        <div className="flex w-full flex-col gap-5 md:flex-row ">
           <SearchBar />
           <FilterCategory />
         </div>
@@ -67,9 +67,9 @@ export default async function Home({ searchParams }: SearchParamProps) {
           emptyTitle="No events found."
           emptyStateSubtext="Check back soon!"
           collectionType="All_Events"
-          limit={10}
-          page={1}
-          totalPages={5}
+          limit={4}
+          page={page}
+          totalPages={events?.totalPages}
         />
       </section>
     </>

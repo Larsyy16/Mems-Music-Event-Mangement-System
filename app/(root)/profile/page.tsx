@@ -43,7 +43,7 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
           emptyStateSubtext="No worries - plenty of exciting events to explore!"
           collectionType="My_Tickets"
           limit={3}
-          page={1}
+          page={purchasesPage}
           urlParamName="purchasesPage"
           totalPages={2}
         />

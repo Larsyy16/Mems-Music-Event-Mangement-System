@@ -57,7 +57,7 @@ export type UpdateEventParams = {
 
 export type EventSearchParams = {
   params: { id: string };
-  searchParams: { [key: string]: string | string | undefined };
+  searchParams: { [key: string]: string | string[] | undefined };
 };
 
 export type FindAllEventsParams = {
@@ -86,6 +86,8 @@ export type GetEventsByUserParams = {
 export type GetSimilarEventsParams = {
   tagId: string;
   eventId?: string;
+  limit?: number;
+  page: number | string;
 };
 
 //purchases
@@ -136,3 +138,9 @@ export type RemoveUrlQueryParams = {
   params: string;
   keysToRemove: string[];
 };
+
+export type PaginationProps = {
+  page: number | string,
+  totalPages: number,
+  urlParamName?: string
+}

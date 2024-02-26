@@ -15,6 +15,7 @@ const EventDetails = async ({
   const similarEvents = await getSimilarEvents({
     tagId: event.category._id,
     eventId: event._id,
+    page: searchParams.page as string
   });
   return (
     <>
@@ -99,9 +100,9 @@ const EventDetails = async ({
           emptyTitle="No events found."
           emptyStateSubtext="Check back soon!"
           collectionType="All_Events"
-          limit={10}
-          page={1}
-          totalPages={5}
+          limit={3}
+          page={searchParams.page as string}
+          totalPages={similarEvents?.totalPages}
         />
       </section>
     </>
