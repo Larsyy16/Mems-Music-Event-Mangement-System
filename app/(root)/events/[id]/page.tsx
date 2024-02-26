@@ -85,9 +85,11 @@ const EventDetails = async ({
                 {event.url}
               </a>
             </p>
+            
           </div>
+          <PurchaseButton event={event} />
+
         </div>
-        <PurchaseButton event={event} />
       </section>
 
       <section className="wrapper bg-grey-50">
