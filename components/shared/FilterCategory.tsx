@@ -46,9 +46,9 @@ const FilterCategory = () => {
     router.push(newUrl, { scroll: false });
   };
   return (
-    <Select  onValueChange={(value: string) => onSelectCategory(value)}>
+    <Select onValueChange={(value: string) => onSelectCategory(value)}>
       <SelectTrigger className="w-[180px] select-field">
-        <SelectValue placeholder="Tag" className="text-black"/>
+        <SelectValue placeholder="Tag" className="text-black" />
       </SelectTrigger>
       <SelectContent className="bg-grey-50 rounded-2xl">
         <SelectItem value="All" className="select-item p-regular-14">

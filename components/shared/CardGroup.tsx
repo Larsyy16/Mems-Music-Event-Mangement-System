@@ -20,12 +20,9 @@ const CardGroup = ({
   emptyStateSubtext,
   collectionType,
   page,
-  totalPages =0,
+  totalPages = 0,
   urlParamName,
 }: CardGroupProps) => {
-  // console.log(data)
-
-  // const group = data[0]
   return (
     <>
       {data.length > 0 ? (
@@ -47,9 +44,13 @@ const CardGroup = ({
             })}
           </ul>
 
-          {totalPages >1 && (
-            <Pagination urlParamName={urlParamName} page={page} totalPages={totalPages}/>
-          )}
+          {
+            <Pagination
+              urlParamName={urlParamName}
+              page={page}
+              totalPages={totalPages}
+            />
+          }
         </div>
       ) : (
         <div className="flex-center gap-2 bg-grey-5 text-center flex-col mb-3">

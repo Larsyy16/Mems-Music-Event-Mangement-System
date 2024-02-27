@@ -174,25 +174,28 @@ export async function getSimilarEvents({
   tagId,
   eventId,
   limit = 3,
-  page = 1
+  page = 1,
 }: GetSimilarEventsParams) {
   try {
     await connectToDatabase();
 
-    const skipAmount = (Number(page) - 1) * limit
+    const skipAmount = (Number(page) - 1) * limit;
     const conditions = {
       $and: [{ category: tagId }, { _id: { $ne: eventId } }],
     };
 
     const eventsQuery = Event.find(conditions)
-    .sort({ createdAt: 'desc' })
-    .skip(skipAmount)
-    .limit(limit)
+      .sort({ createdAt: "desc" })
+      .skip(skipAmount)
+      .limit(limit);
 
     const events = await populateEvent(eventsQuery);
-    const eventsCount = await Event.countDocuments(conditions)
+    const eventsCount = await Event.countDocuments(conditions);
 
-    return { data: JSON.parse(JSON.stringify(events)), totalPages: Math.ceil(eventsCount / limit) }
+    return {
+      data: JSON.parse(JSON.stringify(events)),
+      totalPages: Math.ceil(eventsCount / limit),
+    };
   } catch (error) {
     handleError(error);
   }

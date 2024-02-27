@@ -18,7 +18,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
     query: "",
     category,
     page,
-    limit: 10,
+    limit: 4,
   };
 
   const events = await getAllEvents(findEvents);
@@ -45,7 +45,6 @@ export default async function Home({ searchParams }: SearchParamProps) {
             alt="hero"
             width={1200}
             height={1200}
-            // className="max-h-[70vh] object-contain object-center 2xl:max-h-[50vh]"
           />
         </div>
       </section>

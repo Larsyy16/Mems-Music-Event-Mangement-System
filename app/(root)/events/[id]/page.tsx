@@ -15,7 +15,7 @@ const EventDetails = async ({
   const similarEvents = await getSimilarEvents({
     tagId: event.category._id,
     eventId: event._id,
-    page: searchParams.page as string
+    page: searchParams.page as string,
   });
   return (
     <>
@@ -86,10 +86,8 @@ const EventDetails = async ({
                 {event.url}
               </a>
             </p>
-            
           </div>
           <PurchaseButton event={event} />
-
         </div>
       </section>
 

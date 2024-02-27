@@ -140,7 +140,7 @@ export type RemoveUrlQueryParams = {
 };
 
 export type PaginationProps = {
-  page: number | string,
-  totalPages: number,
-  urlParamName?: string
-}
+  page: number | string;
+  totalPages: number;
+  urlParamName?: string;
+};
