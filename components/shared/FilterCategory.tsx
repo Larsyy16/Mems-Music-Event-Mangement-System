@@ -48,7 +48,7 @@ const FilterCategory = () => {
   return (
     <Select onValueChange={(value: string) => onSelectCategory(value)}>
       <SelectTrigger className="w-[180px] select-field">
-        <SelectValue placeholder="Tag" className="text-black" />
+        <SelectValue placeholder="Tags" className="text-black" />
       </SelectTrigger>
       <SelectContent className="bg-grey-50 rounded-2xl">
         <SelectItem value="All" className="select-item p-regular-14">
