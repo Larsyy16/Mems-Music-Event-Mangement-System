@@ -27,10 +27,10 @@ const EventDetails = async ({
           <p className="text-gray-700 text-lg mb-4">
             Organizer: 
             
-
-          </p>
-          <span className="text-primary-50">{event.organizer.firstName} {event.organizer.lastName}
+            <span className="text-blue-500 text-large font-semibold ml-2">{event.organizer.firstName} {event.organizer.lastName}
             </span>
+          </p>
+
 
           <Image
             src={event.imageUrl}
