@@ -25,8 +25,12 @@ const EventDetails = async ({
 
         <div className="bg-gray-5 p-8 rounded-lg shadow-md">
           <p className="text-gray-700 text-lg mb-4">
-            Organizer: {event.organizer.firstName} {event.organizer.lastName}
+            Organizer: 
+            
+
           </p>
+          <span className="text-primary-50">{event.organizer.firstName} {event.organizer.lastName}
+            </span>
 
           <Image
             src={event.imageUrl}
