@@ -94,7 +94,9 @@ body {
   .p-regular-24 {
     @apply font-normal text-[24px] leading-[36px];
   }
-
+  .p-regular-22 {
+    @apply font-normal text-[22px] leading-[36px];
+  }
   /* 20 */
   .p-bold-20 {
     @apply font-bold text-[20px] leading-[30px] tracking-[2%];
