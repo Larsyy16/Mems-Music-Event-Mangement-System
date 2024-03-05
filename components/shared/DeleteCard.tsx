@@ -42,7 +42,7 @@ export const DeleteCard = ({ eventId }: { eventId: string }) => {
         </AlertDialogHeader>
 
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogCancel className="rounded-2xl">Cancel</AlertDialogCancel>
 
           <AlertDialogAction
             onClick={() =>
@@ -50,6 +50,7 @@ export const DeleteCard = ({ eventId }: { eventId: string }) => {
                 await deleteEventById({ eventId, path: pathname });
               })
             }
+            className="rounded-2xl"
           >
             {isPending ? "Deleting..." : "Delete"}
           </AlertDialogAction>
