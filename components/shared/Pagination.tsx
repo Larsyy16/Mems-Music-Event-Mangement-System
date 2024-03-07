@@ -22,7 +22,7 @@ const Pagination = ({ urlParamName, page, totalPages }: PaginationProps) => {
   };
 
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between mx-3">
       <Button
         size="default"
         variant="outline"
