@@ -86,7 +86,7 @@ const EventDetails = async ({
 
             <p className="text-gray-700 text-lg text-fit mx-2">
               {" "}
-              <a href={event.url} className="text-blue-500 hover:underline">
+              <a href={event.url} className="text-blue-500 hover:underline text-lg">
                 {event.url}
               </a>
             </p>
