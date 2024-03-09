@@ -16,7 +16,10 @@ const PurchaseButton = ({ event }: { event: IEvent }) => {
   return (
     <div>
       {pastEvent ? (
-        <p className="p-3 text-primary-5 text-lg"> Sorry, this event has past. </p>
+        <p className="p-3 text-primary-5 text-lg">
+          {" "}
+          Sorry, this event has past.{" "}
+        </p>
       ) : (
         <>
           <SignedOut>
