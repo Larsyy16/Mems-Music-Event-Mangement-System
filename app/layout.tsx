@@ -17,8 +17,8 @@ const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Mems",
-  description: "Music show platform for event management",
+  title: "Mems: Your Ultimate Music Event Management Platform",
+  description: "Join and discover music events with Mems. Our platform makes event management seamless, bringing music lovers together for unforgettable experiences.",
   icons: {
     icon: "/assets/images/logo.svg",
   },
