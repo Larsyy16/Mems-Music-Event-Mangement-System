@@ -22,6 +22,7 @@ export const metadata: Metadata = {
   icons: {
     icon: "/assets/images/logo.svg",
   },
+  metadataBase: new URL ('https://mems-music-event-mangement-system.vercel.app/')
 };
 
 export default function RootLayout({
