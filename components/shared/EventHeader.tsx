@@ -18,10 +18,10 @@ const EventHeader = () => {
     headerOptions[Math.floor(Math.random() * headerOptions.length)];
 
   return (
-    <h3 className=" text-white h3-bold text-center no-wrap">
+    <h1 className=" text-white h3-bold text-center no-wrap">
       {" "}
       <i> {randomHeader} </i>{" "}
-    </h3>
+    </h1>
   );
 };
 
