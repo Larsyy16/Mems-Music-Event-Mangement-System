@@ -42,10 +42,10 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
           emptyTitle="No event tickets purchased yet"
           emptyStateSubtext="No worries - plenty of exciting events to explore!"
           collectionType="My_Tickets"
-          limit={3}
+          limit={4}
           page={purchasesPage}
           urlParamName="purchasesPage"
-          totalPages={2}
+          totalPages={6}
         />
       </section>
 
