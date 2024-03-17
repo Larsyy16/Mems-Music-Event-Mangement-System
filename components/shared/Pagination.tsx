@@ -32,7 +32,7 @@ const Pagination = ({ urlParamName, page, totalPages }: PaginationProps) => {
       >
         Back
       </Button>
-
+    
       <Button
         size="default"
         variant="outline"
