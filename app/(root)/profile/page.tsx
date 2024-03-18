@@ -53,7 +53,7 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
       <section className="bg-primary-50 bg-dotted-pattern bg-cover bg-center py-6 md:py-10">
         <div className="wrapper flex items-center justify-center sm:justify-between">
           <h3 className="h3-bold text-center sm:text-left text-white">
-            Events created
+            Events Created
           </h3>
           <Button asChild size="lg" className="button hidden sm:flex">
             <Link href="/events/create"> Make New Event</Link>
