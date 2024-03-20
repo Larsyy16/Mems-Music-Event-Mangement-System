@@ -25,7 +25,7 @@ const Pagination = ({ urlParamName, page, totalPages }: PaginationProps) => {
     <div className="flex justify-between mx-3">
       <Button
         size="default"
-        variant="outline"
+        variant="secondary"
         className="bg-white  rounded-2xl"
         onClick={() => onClick("prev")}
         disabled={Number(page) <= 1}
@@ -35,7 +35,7 @@ const Pagination = ({ urlParamName, page, totalPages }: PaginationProps) => {
     
       <Button
         size="default"
-        variant="outline"
+        variant="secondary"
         className="bg-white  rounded-2xl"
         onClick={() => onClick("next")}
         disabled={Number(page) >= totalPages}
