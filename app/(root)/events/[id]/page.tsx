@@ -58,9 +58,9 @@ const EventDetails = async ({
                 className="mr-2"
               />
               <div>
-              <div className="bg-grey-400 px-2 py-2 rounded-2xl">
+              <div className="px-2 py-2 rounded-2xl">
 
-                <p className="text-gray-700 inline-block">
+                <p className="text-gray-700  text-large inline-block">
                   Start Time: {new Date(event.startDateTime).toLocaleString()}
                 </p>
                 <p className="text-gray-700 ">
