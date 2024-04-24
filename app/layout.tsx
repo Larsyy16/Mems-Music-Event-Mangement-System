@@ -18,11 +18,14 @@ const openSans = Open_Sans({
 
 export const metadata: Metadata = {
   title: "Mems: Your Ultimate Music Event Management Platform",
-  description: "Join and discover music events with Mems. Our platform makes event management seamless, bringing music lovers together for unforgettable experiences.",
+  description:
+    "Join and discover music events with Mems. Our platform makes event management seamless, bringing music lovers together for unforgettable experiences.",
   icons: {
     icon: "/assets/images/logo.svg",
   },
-  metadataBase: new URL ('https://mems-music-event-mangement-system.vercel.app/')
+  metadataBase: new URL(
+    "https://mems-music-event-mangement-system.vercel.app/",
+  ),
 };
 
 export default function RootLayout({

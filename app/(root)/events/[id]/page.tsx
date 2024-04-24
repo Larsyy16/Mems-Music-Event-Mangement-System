@@ -38,65 +38,64 @@ const EventDetails = async ({
             width={400}
             height={400}
           />
-            <h2 className="h2-medium font-bold underline py-2"> Details</h2>
-            <p className="text-gray-700 text-lg mb-4">{event.description}</p>
-            <div className="flex items-center mb-4">
-              <Image
-                src="/assets/icons/location-grey.svg"
-                width={24}
-                height={24}
-                alt="location"
-              />
-              <p className="text-gray-700 text-lg mx-1 px-2">{event.location}</p>
-            </div>
-            <div className="flex items-center">
-              <Image
-                src="/assets/icons/clock.svg"
-                width={24}
-                height={24}
-                alt="location"
-                className="mr-2"
-              />
-              <div>
+          <h2 className="h2-medium font-bold underline py-2"> Details</h2>
+          <p className="text-gray-700 text-lg mb-4">{event.description}</p>
+          <div className="flex items-center mb-4">
+            <Image
+              src="/assets/icons/location-grey.svg"
+              width={24}
+              height={24}
+              alt="location"
+            />
+            <p className="text-gray-700 text-lg mx-1 px-2">{event.location}</p>
+          </div>
+          <div className="flex items-center">
+            <Image
+              src="/assets/icons/clock.svg"
+              width={24}
+              height={24}
+              alt="location"
+              className="mr-2"
+            />
+            <div>
               <div className="px-2 py-2 rounded-2xl">
-
                 <p className="text-gray-700  text-large inline-block">
                   Start Time: {new Date(event.startDateTime).toLocaleString()}
                 </p>
                 <p className="text-gray-700 ">
                   End Time: {new Date(event.endDateTime).toLocaleString()}
                 </p>
-                </div>
               </div>
             </div>
-            <div className="flex items-center my-4 px-2">
-              <p className="p-bold-20 text-green-700 bg-green-100 px-4 rounded-2xl mx-3">
-                {" "}
-                {event.isFree ? "Free" : `$${event.price}`}
-              </p>
-              <p className="text-white bg-primary-5000 rounded-2xl inline-block px-3 py-1">
-                {event.category.name}
-              </p>
-            </div>
-            <div className="flex items-center mb-4">
-              <Image
-                src="/assets/icons/link.svg"
-                width={24}
-                height={24}
-                alt="location"
-              />
+          </div>
+          <div className="flex items-center my-4 px-2">
+            <p className="p-bold-20 text-green-700 bg-green-100 px-4 rounded-2xl mx-3">
+              {" "}
+              {event.isFree ? "Free" : `$${event.price}`}
+            </p>
+            <p className="text-white bg-primary-5000 rounded-2xl inline-block px-3 py-1">
+              {event.category.name}
+            </p>
+          </div>
+          <div className="flex items-center mb-4">
+            <Image
+              src="/assets/icons/link.svg"
+              width={24}
+              height={24}
+              alt="location"
+            />
 
-              <p className="text-gray-700 text-lg text-fit mx-2">
-                {" "}
-                <a
-                  href={event.url}
-                  className="text-blue-500 hover:underline text-lg"
-                >
-                  {event.url}
-                </a>
-              </p>
-            </div>
-          
+            <p className="text-gray-700 text-lg text-fit mx-2">
+              {" "}
+              <a
+                href={event.url}
+                className="text-blue-500 hover:underline text-lg"
+              >
+                {event.url}
+              </a>
+            </p>
+          </div>
+
           <PurchaseButton event={event} />
         </div>
       </section>
