@@ -50,14 +50,14 @@ const FilterCategory = () => {
       <SelectTrigger className="w-[180px] select-field">
         <SelectValue placeholder="Tags" className="text-black" />
       </SelectTrigger>
-      <SelectContent className="bg-grey-50 rounded-2xl">
+      <SelectContent className="bg-grey-50 rounded-2xl" key='all' >
         <SelectItem value="All" className="select-item p-regular-14">
           All
         </SelectItem>
         {tags.map((tag) => (
           <SelectItem
             value={tag.name}
-            key={tag.id}
+            key={tag._id}
             className="select-item p-regular-14 text-black"
           >
             {tag.name}

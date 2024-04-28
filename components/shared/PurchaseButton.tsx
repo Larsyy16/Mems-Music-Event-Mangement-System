@@ -10,7 +10,6 @@ import Purchase from "./Purchase";
 const PurchaseButton = ({ event }: { event: IEvent }) => {
   const { user } = useUser();
   const userId = user?.publicMetadata.userId as string;
-  console.log(typeof userId);
   const pastEvent = new Date(event.endDateTime) < new Date();
 
   return (
