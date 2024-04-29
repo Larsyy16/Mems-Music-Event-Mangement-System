@@ -53,8 +53,8 @@ const CardGroup = ({
           }
         </div>
       ) : (
-        <div className="flex-center gap-2 bg-grey-5 text-center flex-col mb-3">
-          <h3 className="p-bold-20"> {emptyTitle}</h3>
+        <div className="flex-center gap-2 bg-grey-5 text-center flex-col mb-3 py-4 rounded-xl min-h-8">
+          <h3 className="p-bold-24"> {emptyTitle}</h3>
           <p className="p-bold-16"> {emptyStateSubtext}</p>
         </div>
       )}
