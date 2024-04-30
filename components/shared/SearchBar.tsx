@@ -10,9 +10,7 @@ const SearchBar = ({ placeholder = "Search..." }: { placeholder?: string }) => {
   const [query, setQuery] = useState("");
   const searchParams = useSearchParams();
 
-  // console.log(searchParams)
   const router = useRouter();
-  // console.log(router)
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       let newUrl = "";

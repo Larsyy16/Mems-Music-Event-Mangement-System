@@ -252,7 +252,6 @@ const EventForm = ({ userId, type, event, eventId }: EventformProps) => {
               <FormItem className="w-full">
                 <FormControl>
                   <div className="flex-center bg-grey-50 rounded-2xl overflow-hidden">
-                    {/* flex-center h-[54px] w-full overflow-hidden rounded-full bg-grey-50 px-4 py-2 */}
                     <Image
                       src="/assets/icons/location-grey.svg"
                       alt="calendar"

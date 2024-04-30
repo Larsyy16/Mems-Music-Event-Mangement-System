@@ -1,5 +1,4 @@
 const EventHeader = () => {
-  // Array of header options
   const headerOptions = [
     "Plan Your Perfect Event",
     "Create Memorable Experiences",
@@ -13,7 +12,6 @@ const EventHeader = () => {
     "Shaping Your Spectacular Event",
   ];
 
-  // Randomly choose a header
   const randomHeader =
     headerOptions[Math.floor(Math.random() * headerOptions.length)];
 

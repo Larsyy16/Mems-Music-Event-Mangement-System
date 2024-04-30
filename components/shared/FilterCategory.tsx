@@ -50,7 +50,7 @@ const FilterCategory = () => {
       <SelectTrigger className="w-[180px] select-field">
         <SelectValue placeholder="Tags" className="text-black" />
       </SelectTrigger>
-      <SelectContent className="bg-grey-50 rounded-2xl" key='all' >
+      <SelectContent className="bg-grey-50 rounded-2xl" key="all">
         <SelectItem value="All" className="select-item p-regular-14">
           All
         </SelectItem>
