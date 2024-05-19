@@ -64,8 +64,8 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
       <section className="wrapper my-8">
         <CardGroup
           data={organizedEvents?.data}
-          emptyTitle="No events have been created yet"
-          emptyStateSubtext="Go create some now"
+          emptyTitle="No events have been created yet!"
+          emptyStateSubtext="Go create some now!"
           collectionType="Events_Organized"
           limit={3}
           page={eventsPage}
