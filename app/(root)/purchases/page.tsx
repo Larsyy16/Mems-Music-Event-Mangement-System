@@ -24,7 +24,7 @@ const Purchases = async ({ searchParams }: SearchParamProps) => {
         <SearchBar />{" "}
       </section>
 
-      <section className="wrapper overflow-x-auto">
+      <section className="wrapper overflow-x-auto bg-white mx-2">
         <table className="w-full border-collapse border-t">
           <thead>
             <tr className="p-medium-14 border-b text-grey-500">
@@ -53,7 +53,7 @@ const Purchases = async ({ searchParams }: SearchParamProps) => {
                       className="p-regular-14 lg:p-regular-16 border-b "
                       style={{ boxSizing: "border-box" }}
                     >
-                      <td className="min-w-[250px] py-4 text-primary-500">
+                      <td className="min-w-[250px] py-4">
                         {row._id}
                       </td>
                       <td className="min-w-[200px] flex-1 py-4 pr-4">
