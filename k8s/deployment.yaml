@@ -1,0 +1,105 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mems-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mems
+  template:
+    metadata:
+      labels:
+        app: mems
+    spec:
+      containers:
+        - name: mems
+          image: mems-frontend:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: mems-env-secret
+                  key: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+            - name: CLERK_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: mems-env-secret
+                  key: CLERK_SECRET_KEY
+            - name: NEXT_PUBLIC_CLERK_SIGN_IN_URL
+              valueFrom:
+                secretKeyRef:
+                  name: mems-env-secret
+                  key: NEXT_PUBLIC_CLERK_SIGN_IN_URL
+            - name: NEXT_PUBLIC_CLERK_SIGN_UP_URL
+              valueFrom:
+                secretKeyRef:
+                  name: mems-env-secret
+                  key: NEXT_PUBLIC_CLERK_SIGN_UP_URL
+            - name: NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL
+              valueFrom:
+                secretKeyRef:
+                  name: mems-env-secret
+                  key: NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL
+            - name: NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL
+              valueFrom:
+                secretKeyRef:
+                  name: mems-env-secret
+                  key: NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: mems-env-secret
+                  key: MONGODB_URI
+            - name: WEBHOOK_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: mems-env-secret
+                  key: WEBHOOK_SECRET
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: mems-env-secret
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: mems-env-secret
+                  key: AWS_SECRET_ACCESS_KEY
+            - name: AWS_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: mems-env-secret
+                  key: AWS_REGION
+            - name: AWS_BUCKET_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: mems-env-secret
+                  key: AWS_BUCKET_NAME
+            - name: NEXT_PUBLIC_BASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: mems-env-secret
+                  key: NEXT_PUBLIC_BASE_URL
+            - name: NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: mems-env-secret
+                  key: NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+            - name: STRIPE_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: mems-env-secret
+                  key: STRIPE_SECRET_KEY
+            - name: NEXT_PUBLIC_SERVER_URL
+              valueFrom:
+                secretKeyRef:
+                  name: mems-env-secret
+                  key: NEXT_PUBLIC_SERVER_URL
+            - name: STRIPE_WEBHOOK_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: mems-env-secret
+                  key: STRIPE_WEBHOOK_SECRET

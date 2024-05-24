@@ -1,5 +1,5 @@
 services:
-  frontendddock:
+  frontend:
     build:
       context: .
       dockerfile: Dockerfile
